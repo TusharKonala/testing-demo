@@ -16,3 +16,38 @@ describe("absolute", () => {
     expect(result).toBe(0);
   });
 });
+
+describe("greet", () => {
+  it("should return the greeting message", () => {
+    const result = lib.greet("Tushar");
+    // expect(result).toMatch(/Tushar/);
+    // expect(result).toContain("Tushar");
+  });
+});
+
+describe("getCurrencies", () => {
+  it("must return supported currencies", () => {
+    const result = lib.getCurrencies();
+
+    // Too generic
+    expect(result).toBeDefined();
+    expect(result).not.toBeNull();
+
+    // Very Specific
+    expect(result[0]).toBe("USD");
+    expect(result[1]).toBe("AUD");
+    expect(result[2]).toBe("EUR");
+
+    // Ideal Test
+    expect(result).toEqual(expect.arrayContaining(["USD", "AUD", "EUR"]));
+  });
+});
+
+describe("getProduct", () => {
+  it("should return the product with the given id", () => {
+    const result = lib.getProduct(1);
+    // expect(result).toEqual({ id: 1, price: 10 });
+    expect(result).toMatchObject({ id: 1, price: 10 });
+    expect(result).toHaveProperty("id", 1);
+  });
+});
